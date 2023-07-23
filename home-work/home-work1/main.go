@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-
-	inmemorycache "exmaple.com/home-work/home-work1/in-memory-cache"
-)
+import inmemorycache "exmaple.com/home-work/home-work1/in-memory-cache"
 
 func main() {
 	// Create cache
@@ -16,8 +12,6 @@ func main() {
 	// Get value by key
 	cache.Get("userId")
 
-	// Dlete value by key
-	// cache.Delete("userId")
-
-	fmt.Println(cache)
+	// Delete value by key
+	cache.Delete("userId")
 }

@@ -49,5 +49,6 @@ func main() {
 	fmt.Println(user1.getName())
 	fmt.Println(user2.getName())
 
-	fmt.Println(user1.age)
+	fmt.Println()
+
 }

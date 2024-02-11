@@ -16,7 +16,7 @@ func main() {
 	// Get value by key
 	cache.Get("userId")
 
-	// Dlete value by key
+	// Delete value by key
 	// cache.Delete("userId")
 
 	fmt.Println(cache)

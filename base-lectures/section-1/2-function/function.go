@@ -3,17 +3,10 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 )
 
 func main() {
-
-	message, err := checkAge(1)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(message)
-
+	fmt.Println(prediction("Monday"))
 }
 func printMessage(message string) {
 	fmt.Println(message)
@@ -32,4 +25,17 @@ func checkAge(age int) (string, error) {
 	}
 
 	return "Decline enter", errors.New("you are too young")
+}
+
+func prediction(dayOfWeek string) (string, error) {
+	switch dayOfWeek {
+	case "Monday":
+		return "Wish you good start :)", nil
+	case "Tuesday":
+		return "Good tuesday", nil
+	case "Wednesday":
+		return "This is middle of week, that's gooood ;)", nil
+	default:
+		return "I want a weekend", errors.New("the best days of the week")
+	}
 }

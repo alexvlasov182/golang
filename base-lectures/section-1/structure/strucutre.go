@@ -2,28 +2,25 @@ package main
 
 import "fmt"
 
-type Age int
 
-func (a Age) isAdult() bool {
-	return a >= 18
-}
 
 type User struct {
-	name   string
-	age    int
-	sex    string
-	weight int
-	height int
+	Name   string `json:"name"`
+	Age    int    `json:"age"`
+	Sex    string `json:"sex"`
+	Weight int    `json:"weight"`
+	Height int    `json:"height"`
 }
 
 // Pointer receiver
 func (u *User) setNmae(name string) {
-	u.name = name
+	u.Name = name
+   
 }
 
 // Value receiver
 func (u User) getName() string {
-	return u.name
+	return u.Name
 }
 
 type DumbDatabase struct {
@@ -36,13 +33,13 @@ func newDumbDatabase() *DumbDatabase {
 	}
 }
 
-func NewUser(name, sex string, age, weight, height int) User {
+func NewUser(name, sex string, age, weight, height int) User  {
 	return User{
-		name:   name,
-		sex:    sex,
-		age:    age,
-		weight: weight,
-		height: height,
+		Name:   name,
+		Sex:    sex,
+		Age:    age,
+		Weight: weight,
+		Height: height,
 	}
 }
 
@@ -54,4 +51,5 @@ func main() {
 	fmt.Println(user1)
 	fmt.Println(user1.getName())
 	fmt.Println(user2.getName())
+	fmt.Println(newDumbDatabase())
 }

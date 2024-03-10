@@ -36,12 +36,15 @@ func main() {
 	printInterface(circle)
 	printInterface(22)
 	printInterface(true)
+	printInterfaceToString("qwe")
+	printInterfaceToString(22)
 }
 
 func printShapeArea(shape Shape) {
 	fmt.Println(shape.Area())
 }
 
+// Type switch
 func printInterface(i interface{}) {
 	switch value := i.(type) {
 	case int:
@@ -51,4 +54,14 @@ func printInterface(i interface{}) {
 	default:
 		fmt.Println("unknown type", value)
 	}
+}
+
+func printInterfaceToString(i interface{}) {
+	str, ok := i.(string)
+	if !ok {
+		fmt.Println("interface is not string")
+		return
+	}
+
+	fmt.Println(len(str))
 }

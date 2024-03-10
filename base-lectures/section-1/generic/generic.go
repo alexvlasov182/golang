@@ -9,8 +9,8 @@ type Number interface {
 }
 
 type User struct {
-	email string
-	name  string
+	Email string `json:"email"`
+	Name  string `json:"name"`
 }
 
 func main() {
@@ -20,21 +20,21 @@ func main() {
 
 	d := []User{
 		{
-			email: "asd@gmail.com",
-			name:  "Oleksandr",
+			Email: "asd@gmail.com",
+			Name:  "Oleksandr",
 		},
 		{
-			email: "lsd@gmail.com",
-			name:  "Anastasiia",
+			Email: "lsd@gmail.com",
+			Name:  "Anastasiia",
 		},
 	}
 
 	fmt.Println(sum(a))
 	fmt.Println(sum(b))
-	fmt.Println(serchElement(c, "2"))
-	fmt.Println(serchElement(d, User{
-		email: "lsd@gmail.com",
-		name:  "Lochart",
+	fmt.Println(searchElement(c, "2"))
+	fmt.Println(searchElement(d, User{
+		Email: "lsd@gmail.com",
+		Name:  "Lochart",
 	}))
 
 	printAny(d)
@@ -52,7 +52,7 @@ func sum[V Number](input []V) V {
 	return result
 }
 
-func serchElement[C comparable](elements []C, searchEl C) bool {
+func searchElement[C comparable](elements []C, searchEl C) bool {
 	for _, el := range elements {
 		if el == searchEl {
 			return true

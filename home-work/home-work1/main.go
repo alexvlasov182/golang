@@ -3,20 +3,22 @@ package main
 import (
 	"fmt"
 
-	inmemorycache "exmaple.com/home-work/home-work1/in-memory-cache"
+	cache "exmaple.com/home-work/home-work1/in-memory-cache"
 )
 
 func main() {
 	// Create cache
-	cache := inmemorycache.NewCache()
+	cache := cache.New()
 
 	// Set new value
-	cache.Set("userId", 123)
+	cache.Set("userId", 42)
+	userId := cache.Get("userId")
 
-	// Get value by key
-	cache.Get("userId")
+	fmt.Println(userId)
 
-	// Delete value by key
-	// cache.Delete("userId")
-	fmt.Println(cache)
+	cache.Delete("userId")
+	userId = cache.Get("userId") // Reassigning userId variable
+
+	fmt.Println(userId)
+
 }

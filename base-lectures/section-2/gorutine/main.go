@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// actions defines a list of possible users actions.
 var actions = []string{
 	"logged in",
 	"logged out",
@@ -16,17 +17,20 @@ var actions = []string{
 	"update record",
 }
 
+// lotItem represents alt entry with action and timestamp
 type logItem struct {
-	action    string
-	timestamp time.Time
+	action    string    // action performed by the user
+	timestamp time.Time // timestamp of the action
 }
 
+// User represent a user wiht an ID, email, and activity log.
 type User struct {
-	id    int
-	email string
-	logs  []logItem
+	id    int       // unique identifier for the user
+	email string    // email addrss of the user
+	logs  []logItem // activity log of the user
 }
 
+// getActivityInfo returns a string containing users's information and activity log.
 func (u User) getActivityInfo() string {
 	out := fmt.Sprintf("Id: %d | Email: %s\nActivity Log: \n", u.id, u.email)
 
@@ -37,10 +41,12 @@ func (u User) getActivityInfo() string {
 	return out
 }
 
+// main is the entry point of the program.
+// The main function calculates and prints the time elapsed during execution.
 func main() {
 	rand.Seed(time.Now().Unix())
 
-	t := time.Now()
+	startTime := time.Now()
 
 	wg := &sync.WaitGroup{}
 
@@ -53,10 +59,10 @@ func main() {
 
 	wg.Wait()
 
-	fmt.Println("Time Elapsed", time.Since(t).String())
-
+	fmt.Println("Time Elapsed", time.Since(startTime).String())
 }
 
+// saveUserInfo saves user information to a file.
 func saveUserInfo(user User, wg *sync.WaitGroup) error {
 	time.Sleep(time.Millisecond * 10)
 	fmt.Printf("Writing file for user id: %d\n", user.id)
@@ -66,6 +72,8 @@ func saveUserInfo(user User, wg *sync.WaitGroup) error {
 	if err != nil {
 		return err
 	}
+
+	defer file.Close()
 
 	_, err = file.WriteString(user.getActivityInfo())
 	if err != nil {
@@ -77,6 +85,7 @@ func saveUserInfo(user User, wg *sync.WaitGroup) error {
 	return nil
 }
 
+// generateUsers generates a specified number of users with random logs.
 func generateUsers(count int) []User {
 	users := make([]User, count)
 
@@ -90,6 +99,7 @@ func generateUsers(count int) []User {
 	return users
 }
 
+// generateLogs generates a specified number of random log entries.
 func generateLogs(count int) []logItem {
 	logs := make([]logItem, count)
 

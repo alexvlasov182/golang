@@ -17,7 +17,7 @@ var actions = []string{
 	"update record",
 }
 
-// lotItem represents alt entry with action and timestamp
+// logItem represents alt entry with action and timestamp
 type logItem struct {
 	action    string    // action performed by the user
 	timestamp time.Time // timestamp of the action
@@ -96,7 +96,7 @@ func generateUsers(count int, users chan User) {
 			email: fmt.Sprintf("user%d@ninja.go", i+1),
 			logs:  generateLogs(rand.Intn(1000)),
 		}
-		time.Sleep(time.Millisecond * 10)
+		//time.Sleep(time.Millisecond * 10)
 	}
 
 	close(users)

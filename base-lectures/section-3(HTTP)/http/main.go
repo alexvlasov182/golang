@@ -17,10 +17,17 @@ var (
 )
 
 func main() {
-	http.HandleFunc("/users", handleUsers)
+	http.HandleFunc("/users", loggerMiddleware(handleUsers))
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
+	}
+}
+
+func loggerMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("[%s] %s\n", r.Method, r.URL)
+		next(w, r)
 	}
 }
 
